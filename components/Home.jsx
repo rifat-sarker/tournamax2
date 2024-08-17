@@ -1,34 +1,13 @@
 "use client";
-import dynamic from "next/dynamic";
-// import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import { useState } from "react";
 
 
-// Dynamically import components from react-leaflet
-const MapContainer = dynamic(
-  () => import("react-leaflet").then(mod => mod.MapContainer),
-  { ssr: false }
-);
 
-const TileLayer = dynamic(
-  () => import("react-leaflet").then(mod => mod.TileLayer),
-  { ssr: false }
-);
-
-const Marker = dynamic(
-  () => import("react-leaflet").then(mod => mod.Marker),
-  { ssr: false }
-);
-
-const Popup = dynamic(
-  () => import("react-leaflet").then(mod => mod.Popup),
-  { ssr: false }
-);
 export default function HomePage() {
-  
-  
   const markers = [
     { position: [28.6139, 77.209], label: "New Delhi" },
     { position: [19.076, 72.8777], label: "Mumbai" },
@@ -44,7 +23,11 @@ export default function HomePage() {
   });
 
   return (
-    <MapContainer style={{height: "100vh", width: "100%"}}  center={center} zoom={4}>
+    <MapContainer
+      style={{ height: "100vh", width: "100%" }}
+      center={center}
+      zoom={4}
+    >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
